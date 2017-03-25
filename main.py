@@ -24,19 +24,28 @@ FLAGS, unparsed = parser.parse_known_args()
 data_loader = DataLoader(FLAGS.dataset)
 train,valid,test = data_loader.load_data()
 
-if FLAGS.visualize is not 0: #Visualize?
+#Visualize?
+if FLAGS.visualize is not 0: 
 	data_loader.visualize(train,n = FLAGS.visualize)
 
 nSamp_train = train[0].shape[0]  #Number of training samples
 nSamp_valid = valid[0].shape[0]  #Number of validation samples
 d = valid[0].shape[1]   #Number of features
 
-sigma = 1.0
+# Search for optimal sigma through grid search
+# sigmas = np.array([0.05,0.08,0.1,0.2,0.5,1.0,1.5,2])
+sigmas = np.array([1.0])
+#Store results in a dictionry
+results = dict()
 
-#Find log likelihood
-start = time.time()
-ll = log_likelihood(valid[0][0:500],train[0],sigma)
-end = time.time()
+for sigma_ in sigmas:
+	
+	#Find log likelihood
+	start = time.time()
+	ll = log_likelihood(valid[0][0:500],train[0],sigma_)
+	end = time.time()
+	timing = end - start
+	results[sigma_] = {'log-likelihood': np.mean(ll),'timing': timing}
 
-print(end - start)
+print(results)
 

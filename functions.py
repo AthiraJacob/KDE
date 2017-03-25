@@ -7,6 +7,7 @@ import pickle
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from numpy.core.umath_tests import inner1d
+from scipy.misc import logsumexp
 
 class DataLoader():
 	'''
@@ -16,7 +17,7 @@ class DataLoader():
 	'''
 	def __init__(self,dataset):
 		if dataset == 'mnist':
-			self.dataset_name = 'mnist.pkl'
+			self.dataset_name = '../mnist.pkl'
 		elif dataset == 'cifar-100':
 			self.dataset_name = 'a'
 		else: 
@@ -25,7 +26,7 @@ class DataLoader():
 	def unpickle(self): 
 		#Unpickle the data file 
 		fo = open(self.dataset_name, 'rb')
-		dict = pickle.load(fo,encoding='latin1') #Object pickled in Python 2, unpickling now in python 3
+		dict = pickle.load(fo) #Object pickled in Python 2, unpickling now in python 3
 		fo.close()
 		return dict
 
@@ -54,6 +55,9 @@ class DataLoader():
 			plt.imshow(img, cmap='gray')
 		plt.show()
 
+	def pre_process(self,X):
+		X = (X-np.min(X))
+
 
 def log_likelihood(X,D,sigma):
 	'''
@@ -63,6 +67,7 @@ def log_likelihood(X,D,sigma):
 			  sigma: smoothing parameter
 	Outputs-  ll: mx1 array of log likelihoods log(p(x))
 	'''
+	
 	N = D.shape[0]
 	K = np.arange(1,N+1).reshape([1,N])
 	d = X.shape[1]
@@ -76,7 +81,8 @@ def log_likelihood(X,D,sigma):
 		x = X[k:t]
 		x = x.reshape([x.shape[0],x.shape[1],1])
 		temp = np.einsum('ijk,ijk->ki',np.transpose(x-np.transpose(D)),np.transpose(x-np.transpose(D)))/(2*sigma**2)
-		ll[k:t] = (np.log(np.sum(np.exp(-temp)/K,1))- np.log(2*np.pi*sigma**2)*d/2).reshape([batch,1])
+		ll[k:t] = (np.log(np.sum(np.exp(-temp)/K,1))- np.log(2*np.pi*sigma**2)*d/2).reshape([t-k,1])
+
 		k = k+batchSize
 		if k%100 == 0:
 	 		print(''.join([str(k),' samples done..']))
