@@ -16,8 +16,10 @@ class DataLoader():
 	Param  dataset: name of the dataset (mnist/cifar-10)
 	'''
 	def __init__(self,dataset):
+		#Initializes name of the dataset file
 		if dataset == 'mnist':
 			self.dataset_name = '../mnist.pkl'
+			print('Analyzing MNIST dataset!')
 		elif dataset == 'cifar-100':
 			self.dataset_name = 'a'
 		else: 
@@ -31,14 +33,17 @@ class DataLoader():
 		return dict
 
 	def load_data(self):
-		 train,valid,test = self.unpickle()
-		 #Use only 10k from trainset as training set, and another 10k as validation set
-		 N = 10000
-		 nSamp = train[0].shape[0]
-		 indx = np.random.permutation(nSamp) #Shuffle
-		 train_new = (train[0][indx[:N]],train[1][indx[:N]]) 
-		 valid_new = (train[0][indx[N:2*N]],train[1][indx[N:2*N]])
-		 return train_new,valid_new,test
+		'''
+		Returns data split into 3 sub divisions: train, validation and testing
+		Eachs split is of the form: split = [data,labels]. Eg: split[0] gives N x d data matrix
+		'''
+		train,valid,test = self.unpickle()
+		N = 10000 #Use only 10k from trainset as training set, and another 10k as validation set
+		nSamp = train[0].shape[0]
+		indx = np.random.permutation(nSamp) #Shuffle
+		train_new = (train[0][indx[:N]],train[1][indx[:N]]) 
+		valid_new = (train[0][indx[N:2*N]],train[1][indx[N:2*N]])
+		return train_new,valid_new,test
 
 	def visualize(self,data, n = 20):
 		#Visualize first n*n images of the data in a nxn grid
@@ -81,10 +86,10 @@ def log_likelihood(X,D,sigma):
 		x = X[k:t]
 		x = x.reshape([x.shape[0],x.shape[1],1])
 		temp = np.einsum('ijk,ijk->ki',np.transpose(x-np.transpose(D)),np.transpose(x-np.transpose(D)))/(2*sigma**2)
-		a = np.max(-temp)   #Constant term to take out of exponential for better numerical behaviour
-		ll[k:t] = (a + np.log(np.sum(np.exp(-temp - a)/K,1))- np.log(2*np.pi*sigma**2)*d/2).reshape([batchSize,1])
+		a = np.max(-temp,1).reshape([t-k,1])   #Constant term to take out of exponential for better numerical behaviour
+		ll[k:t] = a + np.log(np.sum(np.exp(-temp - a)/K,1)).reshape([t-k,1])- np.log(2*np.pi*sigma**2)*d/2
 		k = k+batchSize
-		if k%100 == 0:
+		if k%500 == 0:
 	 		print(''.join([str(k),' samples done..']))
 
 
