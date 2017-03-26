@@ -75,14 +75,14 @@ def log_likelihood(X,D,sigma):
 
 	ll = np.zeros([nSamp,1])
 	k = 0
-	batchSize = 1
+	batchSize = 1   #Number of samples to be calculated simultaneously 
 	while k<nSamp:
 		t = min(k+batchSize,nSamp)
 		x = X[k:t]
 		x = x.reshape([x.shape[0],x.shape[1],1])
 		temp = np.einsum('ijk,ijk->ki',np.transpose(x-np.transpose(D)),np.transpose(x-np.transpose(D)))/(2*sigma**2)
-		ll[k:t] = (np.log(np.sum(np.exp(-temp)/K,1))- np.log(2*np.pi*sigma**2)*d/2).reshape([t-k,1])
-
+		a = np.max(-temp)   #Constant term to take out of exponential for better numerical behaviour
+		ll[k:t] = (a + np.log(np.sum(np.exp(-temp - a)/K,1))- np.log(2*np.pi*sigma**2)*d/2).reshape([batchSize,1])
 		k = k+batchSize
 		if k%100 == 0:
 	 		print(''.join([str(k),' samples done..']))

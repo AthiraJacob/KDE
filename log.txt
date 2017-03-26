@@ -1,0 +1,13 @@
+Calculating for sigma = 0.05...
+100 samples done..
+200 samples done..
+300 samples done..
+400 samples done..
+500 samples done..
+Calculating for sigma = 0.08...
+100 samples done..
+200 samples done..
+300 samples done..
+400 samples done..
+500 samples done..
+{0.080000000000000002: {'timing': 8.84372615814209, 'log-likelihood': -583.13661866383541}, 0.050000000000000003: {'timing': 8.57408094406128, 'log-likelihood': -3076.7180339260494}}

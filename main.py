@@ -34,12 +34,13 @@ d = valid[0].shape[1]   #Number of features
 
 # Search for optimal sigma through grid search
 # sigmas = np.array([0.05,0.08,0.1,0.2,0.5,1.0,1.5,2])
-sigmas = np.array([1.0])
+sigmas = np.array([0.05])
 #Store results in a dictionry
 results = dict()
 
 for sigma_ in sigmas:
 	
+	print('Calculating for sigma = ' + str(sigma_) + '...')
 	#Find log likelihood
 	start = time.time()
 	ll = log_likelihood(valid[0][0:500],train[0],sigma_)
