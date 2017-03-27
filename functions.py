@@ -15,13 +15,14 @@ class DataLoader():
 	Also visualize the data
 	Param  dataset: name of the dataset (mnist/cifar-10)
 	'''
-	def __init__(self,dataset):
+	def __init__(self,FLAGS):
 		#Initializes name of the dataset file
-		if dataset == 'mnist':
-			self.dataset_name = '../mnist.pkl'
+		self.dataset = FLAGS.dataset
+		if FLAGS.dataset == 'mnist':
+			self.dataset_name = FLAGS.inputFolder + '/mnist.pkl'
 			print('Analyzing MNIST dataset!')
-		elif dataset == 'cifar-100':
-			self.dataset_name = 'a'
+		elif FLAGS.dataset == 'cifar-100':
+			self.dataset_name = [FLAGS.inputFolder + "cifar-100-python/train",FLAGS.inputFolder + "cifar-100-python/test"]
 		else: 
 			print('Unrecognized dataset!')
 
