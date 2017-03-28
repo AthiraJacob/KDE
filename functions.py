@@ -1,5 +1,6 @@
 '''
-Functions to load,pre-process and visualize data and calculate log likelihood
+Functions to load,pre-process and visualize data and calculate log likelihood. Called my main.py
+
 Author: Athira
 '''
 import numpy as np
@@ -9,9 +10,8 @@ import matplotlib.gridspec as gridspec
 
 class DataLoader():
 	'''
-	Data loader class that loads data, divides it into training, validation and testing sets and returns them
-	Also visualize the data
-	Param  dataset : name of the dataset (mnist/cifar-10)
+	Data loader class to work with data. Contains utilities to load data, divide it into training, validation and testing and visualize them
+	Param  dataset : name of the dataset (mnist/cifar-100)
 	'''
 	def __init__(self,dataset):
 		'''
@@ -33,7 +33,7 @@ class DataLoader():
 		return dict
 
 	def load_data(self):
-		#Load and unpickle datasets stored in self
+		#Load dataset from path stored in self and unpickle them
 		if self.dataset == 'mnist':
 			train,valid,test = self.unpickle(self.file_path)
 			train = train[0]
@@ -50,7 +50,11 @@ class DataLoader():
 		return train[indx[:N]],train[indx[N:2*N]],test
 
 	def visualize(self,data, n = 20):
-		#Visualize first n*n images of the data in a nxn grid
+		'''
+		Visualize first n*n images of the data in a nxn grid. 
+		Inputs: data: N x d dataset
+				n : nxn number of images will be displayed
+		'''
 		plt.figure(figsize=(n,n))
 		gs1 = gridspec.GridSpec(n, n)
 		gs1.update(wspace=0.008, hspace=0.05) # set the spacing between axes. 
@@ -88,7 +92,7 @@ def log_likelihood(X,D,sigma):
 
 	ll = np.zeros([nSamp,1])
 	k = 0
-	batchSize = 50   #Number of samples to be calculated simultaneously 
+	batchSize = 1   #Number of samples to be calculated simultaneously 
 	while k<nSamp:
 		t = min(k+batchSize,nSamp)
 		x = X[k:t]

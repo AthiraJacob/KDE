@@ -159,3 +159,25 @@
 9500 samples done..
 10000 samples done..
 {0.5: {'timing': 1340.4420969486237, 'log-likelihood': -902.87840004803411}, 1.0: {'timing': 1338.893756866455, 'log-likelihood': -2881.0488829028595}, 2.0: {'timing': 1340.3683490753174, 'log-likelihood': -4970.9882546879971}, 0.20000000000000001: {'timing': 1341.104718208313, 'log-likelihood': 856.11855471679769}, 0.10000000000000001: {'timing': 1345.602087020874, 'log-likelihood': -785.1318348168503}, 0.050000000000000003: {'timing': 1356.466983795166, 'log-likelihood': -13738.130788875553}, 0.080000000000000002: {'timing': 1341.2123951911926, 'log-likelihood': -2927.5757272275796}, 1.5: {'timing': 1339.991112947464, 'log-likelihood': -4098.0086871627691}}
+Calculating log-likelihood of test data with the best sigma..
+500 samples done..
+1000 samples done..
+1500 samples done..
+2000 samples done..
+2500 samples done..
+3000 samples done..
+3500 samples done..
+4000 samples done..
+4500 samples done..
+5000 samples done..
+5500 samples done..
+6000 samples done..
+6500 samples done..
+7000 samples done..
+7500 samples done..
+8000 samples done..
+8500 samples done..
+9000 samples done..
+9500 samples done..
+10000 samples done..
+Best sigma = 0.2 with log-likelihood = 849.896323269 and timing = 1343.40885711
