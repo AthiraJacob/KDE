@@ -1,5 +1,3 @@
-Analyzing MNIST dataset!
-Calculating for sigma = 0.05...
 500 samples done..
 1000 samples done..
 1500 samples done..
@@ -20,7 +18,6 @@ Calculating for sigma = 0.05...
 9000 samples done..
 9500 samples done..
 10000 samples done..
-Calculating for sigma = 0.08...
 500 samples done..
 1000 samples done..
 1500 samples done..
@@ -41,7 +38,6 @@ Calculating for sigma = 0.08...
 9000 samples done..
 9500 samples done..
 10000 samples done..
-Calculating for sigma = 0.1...
 500 samples done..
 1000 samples done..
 1500 samples done..
@@ -62,7 +58,6 @@ Calculating for sigma = 0.1...
 9000 samples done..
 9500 samples done..
 10000 samples done..
-Calculating for sigma = 0.2...
 500 samples done..
 1000 samples done..
 1500 samples done..
@@ -83,7 +78,6 @@ Calculating for sigma = 0.2...
 9000 samples done..
 9500 samples done..
 10000 samples done..
-Calculating for sigma = 0.5...
 500 samples done..
 1000 samples done..
 1500 samples done..
@@ -104,7 +98,6 @@ Calculating for sigma = 0.5...
 9000 samples done..
 9500 samples done..
 10000 samples done..
-Calculating for sigma = 1.0...
 500 samples done..
 1000 samples done..
 1500 samples done..
@@ -125,7 +118,6 @@ Calculating for sigma = 1.0...
 9000 samples done..
 9500 samples done..
 10000 samples done..
-Calculating for sigma = 1.5...
 500 samples done..
 1000 samples done..
 1500 samples done..
@@ -146,7 +138,6 @@ Calculating for sigma = 1.5...
 9000 samples done..
 9500 samples done..
 10000 samples done..
-Calculating for sigma = 2.0...
 500 samples done..
 1000 samples done..
 1500 samples done..
@@ -167,6 +158,4 @@ Calculating for sigma = 2.0...
 9000 samples done..
 9500 samples done..
 10000 samples done..
-Results: 
-{0.5: {'timing': 175.51971316337585, 'log-likelihood': -232.61374181447002}, 1.0: {'timing': 174.90946793556213, 'log-likelihood': -739.47540000390154}, 2.0: {'timing': 174.46258521080017, 'log-likelihood': -1270.8676357761365}, 0.20000000000000001: {'timing': 175.50319814682007, 'log-likelihood': 235.53644474770138}, 0.10000000000000001: {'timing': 175.12278985977173, 'log-likelihood': -113.91031216692316}, 0.050000000000000003: {'timing': 177.68948602676392, 'log-likelihood': -3141.8820149499229}, 0.080000000000000002: {'timing': 176.88832211494446, 'log-likelihood': -608.60469272039927}, 1.5: {'timing': 175.40837597846985, 'log-likelihood': -1049.3169480997562}}
-Best sigma = 0.20 with log_likelihood = 235.53644
+{0.5: {'timing': 1340.4420969486237, 'log-likelihood': -902.87840004803411}, 1.0: {'timing': 1338.893756866455, 'log-likelihood': -2881.0488829028595}, 2.0: {'timing': 1340.3683490753174, 'log-likelihood': -4970.9882546879971}, 0.20000000000000001: {'timing': 1341.104718208313, 'log-likelihood': 856.11855471679769}, 0.10000000000000001: {'timing': 1345.602087020874, 'log-likelihood': -785.1318348168503}, 0.050000000000000003: {'timing': 1356.466983795166, 'log-likelihood': -13738.130788875553}, 0.080000000000000002: {'timing': 1341.2123951911926, 'log-likelihood': -2927.5757272275796}, 1.5: {'timing': 1339.991112947464, 'log-likelihood': -4098.0086871627691}}
