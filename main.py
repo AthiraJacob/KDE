@@ -11,7 +11,7 @@ MNIST:         '../mnist.pkl'
 CIFAR100:      '../train' and '../test'
 
 Created 23 March 2017
-The code is written using Linux: , Python:
+The code is written on Linux 3.13.0-113-generic , using Python 2.7.6
 
 Author: Athira
 '''
@@ -34,12 +34,12 @@ FLAGS, unparsed = parser.parse_known_args()
 data_loader = DataLoader(FLAGS.dataset)
 train,valid,test = data_loader.load_data()
 
-if FLAGS.visualize is not 0: #Visualize?
+#Visualize?
+if FLAGS.visualize is not 0: 
 	data_loader.visualize(train,n = FLAGS.visualize) #Visualize training dataset
 
 # Search for optimal sigma through grid search
 sigmas = np.array([0.05,0.08,0.1,0.2,0.5,1.0,1.5,2])
-# sigmas = np.array([0.20])
 results = dict()  #Store results in a dictionry
 
 #Loop through sigma's and store the results in a dictionary
