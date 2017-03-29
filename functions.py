@@ -10,7 +10,7 @@ import matplotlib.gridspec as gridspec
 
 class DataLoader():
 	'''
-	Data loader class to work with data. Contains utilities to load data, divide it into training, validation and testing and visualize them
+	Data loader class to work with data. Contains utilities to load data, divide it into training, validation and testing, and visualize them
 	Param  dataset : name of the dataset (mnist/cifar-100)
 	'''
 	def __init__(self,dataset):
@@ -81,9 +81,9 @@ class DataLoader():
 def log_likelihood(X,D,sigma):
 	'''
 	Calculate log likelihood of data samples in X, given a dataset D
-	Inputs-	  X : mxd matrix
-			  D : kxd data matrix
-			  sigma: smoothing parameter
+	Inputs-	  X : mxd validation matrix
+			  D : kxd training matrix
+			  sigma: smoothing parameter (scalar)
 	Outputs-  ll: mx1 array of log likelihoods log(p(x))
 	'''
 	N = D.shape[0]

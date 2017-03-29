@@ -4,6 +4,7 @@ Input parameters: dataset to use and number of images to display (if needed)
 
 Sample commands to run the script: 
 python main.py                                         (Runs with default settings: MNIST dataset, no visualization )
+python main.py --dataset "mnist" --visualize 0		   (Runs with mnist dataset, no visualization)
 python main.py --dataset "cifar-100" --visualize 10    (Runs with CIFAR100 dataset, displays a grid of 10 x 10 images)
 
 The dataset to be loaded is assumed to be present in the parent directory with the following paths:  
@@ -47,7 +48,7 @@ for sigma_ in sigmas:
 	
 	#Find log likelihood
 	start = time.time()
-	ll = log_likelihood(valid[0:2],train,sigma_)
+	ll = log_likelihood(valid,train,sigma_)
 	end = time.time()
 	timing = end - start
 	results[sigma_] = {'log-likelihood': np.mean(ll),'timing': timing}
@@ -60,6 +61,7 @@ best_ll = -np.inf
 for key,value in results.items():
 	if value['log-likelihood'] > best_ll:
 		best_sigma = key
+		best_ll = value['log-likelihood']
 
 #Calculate log-likelihood of test set using best sigma
 print('Calculating log-likelihood of test data with the best sigma..')
