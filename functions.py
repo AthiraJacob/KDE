@@ -1,5 +1,5 @@
 '''
-Functions to load,pre-process and visualize data and calculate log likelihood. Called my main.py
+Functions to load,pre-process and visualize data and calculate log likelihood. Called by main.py
 
 Author: Athira
 '''
@@ -33,7 +33,8 @@ class DataLoader():
 		return dict
 
 	def load_data(self):
-		#Load dataset from path stored in self and unpickle them
+		#Load dataset from path stored in self and unpickle them. The training dataset is shuffled and the first 10k is used as training
+		# and the next 10k is used as validation data. Test set is used as it is
 		if self.dataset == 'mnist':
 			train,valid,test = self.unpickle(self.file_path)
 			train = train[0]
